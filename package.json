@@ -1,0 +1,13 @@
+{
+  "name": "form-test1",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "vercel build",
+    "deploy": "vercel deploy"
+  },
+  "dependencies": {
+    "mysql2": "^2.3.3",
+    "dotenv": "^16.0.0"
+  }
+}

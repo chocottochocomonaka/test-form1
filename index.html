@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>フォーム送信</title>
+</head>
+<body>
+    <h1>ユーザー情報フォーム</h1>
+    <form id="userForm">
+        <label for="username">ユーザー名：</label>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="email">メールアドレス：</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <button type="submit">送信</button>
+    </form>
+
+    <div id="message"></div>
+
+    <script>
+        document.getElementById('userForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+
+            const response = await fetch('/api/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, email })
+            });
+
+            const result = await response.json();
+
+            const messageDiv = document.getElementById('message');
+            if (response.ok) {
+                messageDiv.innerHTML = `<p>データが正常に送信されました: ${result.message}</p>`;
+            } else {
+                messageDiv.innerHTML = `<p>エラーが発生しました: ${result.error}</p>`;
+            }
+        });
+    </script>
+</body>
+</html>
