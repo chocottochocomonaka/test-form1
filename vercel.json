@@ -1,0 +1,10 @@
+{
+    "builds": [
+      {
+        "src": "pages/**/*",
+        "use": "@vercel/static"
+      }
+    ],
+    "outputDirectory": "public"
+  }
+  
